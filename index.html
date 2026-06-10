@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Birdie Club</title>
+  <title>The Birdie Club v6</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -52,84 +52,143 @@
       </section>
     </header>
 
-    <section class="main-grid">
-      <aside class="left-stack">
-        <div class="sign">Welcome<br/>Birds!</div>
-        <div class="panel current-bird" id="currentBirdPanel"></div>
-      </aside>
-
-      <section class="roster" id="birdList" aria-label="Bird golfer selection"></section>
-
-      <aside class="right-stack">
-        <section class="panel course-card">
-          <p class="label">Current course</p>
-          <h3 id="courseName">Pebblebrook Municipal</h3>
-          <p id="courseDetails">Par 72 • 18 holes</p>
-          <div class="course-art"><span></span></div>
-          <select id="courseSelect" aria-label="Select course"></select>
-        </section>
-
-        <section class="panel reward-card">
-          <div class="mat">▦</div>
-          <div>
-            <strong>Practice rewards ready!</strong>
-            <p><span id="idlePreview">0 coins • 0 feathers</span></p>
+    <section class="panel setup-panel">
+      <div class="setup-grid">
+        <div class="sign">Manual golf when you want it.<br/>Auto golf when you don't.</div>
+        <div class="current-bird panel mini" id="currentBirdPanel"></div>
+        <div class="panel mini selection-panel">
+          <p class="label">Round setup</p>
+          <label class="field"><span>Course</span><select id="courseSelect"></select></label>
+          <label class="field"><span>Strategy</span><select id="strategySelect"></select></label>
+          <div class="range-reward">
+            <strong>At the range</strong>
+            <p id="idlePreview">0 coins • 0 feathers</p>
+            <button id="idleButton">Claim practice rewards</button>
           </div>
-          <button id="idleButton">Claim</button>
-        </section>
+        </div>
+      </div>
+    </section>
 
-        <nav class="menu-buttons" aria-label="Game menu">
-          <button class="primary" id="playRound">⛳ Play Round</button>
-          <button id="clubhouseButton">🏠 Clubhouse</button>
-          <button id="shopButton">🛍️ Shop</button>
-          <button id="tournamentButton">🏆 Tournaments</button>
-        </nav>
+    <section class="panel roster-panel">
+      <div class="section-head">
+        <div>
+          <p class="label">Birdies</p>
+          <h3>Pick your golfer</h3>
+        </div>
+      </div>
+      <section class="roster" id="birdList" aria-label="Bird golfer selection"></section>
+    </section>
+
+    <section class="play-grid">
+      <section class="panel live-round">
+        <div class="live-head">
+          <div>
+            <p class="label">Active hole</p>
+            <h3 id="liveTitle">Start a round to begin.</h3>
+            <p id="liveSubtitle">Pick a Birdie, then start a round.</p>
+          </div>
+          <div class="live-badges">
+            <div class="live-pill" id="holeBadge">Hole -</div>
+            <div class="live-pill" id="parBadge">Par -</div>
+            <div class="live-score" id="liveScore">E</div>
+          </div>
+        </div>
+
+        <div class="stats-strip">
+          <div class="stat-pill"><span>Distance</span><strong id="distanceToPin">-</strong></div>
+          <div class="stat-pill"><span>Lie</span><strong id="currentLie">-</strong></div>
+          <div class="stat-pill"><span>Strokes</span><strong id="strokesThisHole">0</strong></div>
+          <div class="stat-pill"><span>Round</span><strong id="roundProgress">0 / 9</strong></div>
+        </div>
+
+        <div class="course-stage" id="courseStage">
+          <div class="pixel-skyline"></div>
+          <div class="course-ribbon" id="courseRibbon">Ready</div>
+          <div class="rough left"></div>
+          <div class="rough right"></div>
+          <div class="fairway-lane"></div>
+          <div class="water-hazard"></div>
+          <div class="bunker bunker-a"></div>
+          <div class="bunker bunker-b"></div>
+          <div class="green-zone">
+            <div class="cup"></div>
+            <div class="pin"></div>
+          </div>
+          <div class="tee-box"></div>
+          <img id="liveBird" class="live-bird" src="assets/robin-idle.png" alt="Selected Birdie" />
+          <div id="liveBall" class="live-ball"></div>
+          <div id="ballShadow" class="ball-shadow"></div>
+          <div id="shotTrail" class="shot-trail"></div>
+          <div id="shotLabel" class="shot-label">No shot yet</div>
+        </div>
+      </section>
+
+      <aside class="panel shot-console">
+        <div class="section-head compact">
+          <div>
+            <p class="label">Shot controls</p>
+            <h3>Manual / assisted / auto</h3>
+          </div>
+        </div>
+
+        <div class="recommendation panel mini" id="recommendationBox"></div>
+
+        <label class="field"><span>Club</span><select id="clubSelect"></select></label>
+        <div class="triple-grid">
+          <label class="field"><span>Aim</span><select id="aimSelect">
+            <option value="left">Left</option>
+            <option value="center" selected>Centre</option>
+            <option value="right">Right</option>
+          </select></label>
+          <label class="field"><span>Shot type</span><select id="shotTypeSelect">
+            <option value="safe">Safe</option>
+            <option value="normal" selected>Normal</option>
+            <option value="attack">Attack</option>
+          </select></label>
+          <label class="field"><span>Mode</span><select id="playModeSelect">
+            <option value="manual" selected>Manual</option>
+            <option value="assisted">Assisted</option>
+            <option value="auto">Auto</option>
+          </select></label>
+        </div>
+
+        <label class="field">
+          <span>Power <strong id="powerValue">80%</strong></span>
+          <input id="powerSlider" type="range" min="35" max="100" value="80" />
+        </label>
+
+        <div class="action-grid">
+          <button class="primary" id="newRoundButton">Start new round</button>
+          <button id="hitShotButton">Hit shot</button>
+          <button id="autoShotButton">Auto shot</button>
+          <button id="autoHoleButton">Auto hole</button>
+          <button id="autoRoundButton">Auto round</button>
+        </div>
+
+        <div class="helper-box">
+          <strong>How it works</strong>
+          <p>Manual lets you pick club, aim and power. Assisted gives you a recommendation first. Auto takes the shot for you. When you're away, your Birdies practise at the range and bring back rewards.</p>
+        </div>
       </aside>
     </section>
 
-
-    <section class="panel live-round" aria-label="Animated golf round">
-      <div class="live-head">
-        <div>
-          <p class="label">Live round</p>
-          <h3 id="liveTitle">Ready on the 1st tee.</h3>
-          <p id="liveSubtitle">Press Play Round to watch your Birdie play the course.</p>
-        </div>
-        <div class="live-score" id="liveScore">E</div>
-      </div>
-      <div class="course-stage" id="courseStage">
-        <div class="pixel-skyline"></div>
-        <div class="rough left"></div>
-        <div class="rough right"></div>
-        <div class="fairway-lane"></div>
-        <div class="green-zone">
-          <div class="cup"></div>
-          <div class="pin"></div>
-        </div>
-        <div class="tee-box"></div>
-        <img id="liveBird" class="live-bird" src="assets/robin-idle.png" alt="Selected Birdie swinging a golf club" />
-        <div id="liveBall" class="live-ball"></div>
-        <div id="shotTrail" class="shot-trail"></div>
-      </div>
-    </section>
-
-    <section class="panel round-panel">
-      <div class="round-head">
-        <div>
-          <p class="label">Last round</p>
-          <h3 id="roundSummary">Pick a Birdie and play a round.</h3>
-        </div>
-        <button class="ghost" id="toggleLog">Show scorecard</button>
-      </div>
-      <ol id="holeLog" class="hole-log hidden"></ol>
+    <section class="panel log-grid">
+      <section>
+        <div class="section-head compact"><div><p class="label">Commentary</p><h3>Shot-by-shot feed</h3></div></div>
+        <div class="commentary-feed" id="commentaryFeed"></div>
+      </section>
+      <section>
+        <div class="section-head compact"><div><p class="label">Scorecard</p><h3>Current / last round</h3></div></div>
+        <div class="scorecard-wrap" id="scorecardWrap"></div>
+      </section>
     </section>
 
     <footer class="bottom-nav">
-      <button>📋 Daily Tasks <b>3</b></button>
-      <button>📅 Events <b>1</b></button>
+      <button id="clubhouseButton">🏠 Clubhouse</button>
+      <button id="shopButton">🛍️ Shop</button>
+      <button id="tournamentButton">🏆 Tournaments</button>
       <button>🪽 Bird Pass <span id="birdPass">0 / 100</span></button>
       <button>✉️ Mail</button>
-      <button>🐦 Friends</button>
     </footer>
   </main>
 
