@@ -1,26 +1,35 @@
 # The Birdie Club
 
-A tiny browser-based idle golf RPG prototype.
+A cosy browser-based idle golf RPG prototype with pixel-style bird golfers.
 
-## How to play locally
+## Files
 
-Open `index.html` in your browser.
+- `index.html` - page structure
+- `styles.css` - full pixel-style UI and responsive layout
+- `game.js` - game logic, save data, rounds, upgrades and idle rewards
+- `assets/` - bird sprite assets and concept images
 
-## How to publish with GitHub Pages
+## How to publish on GitHub Pages
 
-1. Create a new GitHub repository called `the-birdie-club`.
-2. Upload `index.html`, `styles.css`, `game.js`, and `README.md`.
-3. Go to repository Settings → Pages.
-4. Under Build and deployment, choose Deploy from a branch.
-5. Select branch `main` and folder `/root`.
-6. Save.
-7. GitHub will give you a public URL, usually `https://YOURUSERNAME.github.io/the-birdie-club/`.
+Upload all files and the `assets` folder to the top level of your repository, then use:
 
-## Prototype features
+- Settings → Pages
+- Source: Deploy from a branch
+- Branch: `main`
+- Folder: `/root`
 
-- Four playable Birdies
-- Three courses
-- Automatic 9-hole score simulation
-- Coins, XP, bird levelling, clubhouse upgrades
-- Local browser save using localStorage
-- Idle practice rewards
+Your site will usually be live at:
+
+`https://danpal1882.github.io/The-Birdie-Club/`
+
+## What changed in this version
+
+- New main menu / clubhouse layout
+- Cropped bird sprite assets for Robin, Duck, Owl and Crow
+- Selectable bird cards with stat bars
+- Course panel
+- Idle practice rewards panel
+- Clubhouse upgrades modal
+- Shop and tournaments placeholder screens
+- Mobile-friendly responsive layout
+- Local save using `localStorage`
