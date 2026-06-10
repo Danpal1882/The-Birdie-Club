@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Birdie Club</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="hero panel">
+      <div>
+        <p class="eyebrow">Pixel idle golf RPG</p>
+        <h1>The Birdie Club</h1>
+        <p class="subtitle">Train bird golfers, play automatic rounds, upgrade your clubhouse, and chase the mythical albatross.</p>
+      </div>
+      <div class="score-card">
+        <span>Coins</span><strong id="coins">0</strong>
+        <span>Club XP</span><strong id="clubXp">0</strong>
+        <span>Clubhouse</span><strong id="clubLevel">1</strong>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="panel">
+        <h2>Choose your Birdie</h2>
+        <div id="birdList" class="bird-list"></div>
+      </div>
+
+      <div class="panel">
+        <h2>Round setup</h2>
+        <label for="courseSelect">Course</label>
+        <select id="courseSelect"></select>
+
+        <label for="strategySelect">Strategy</label>
+        <select id="strategySelect">
+          <option value="safe">Safe - fewer disasters, fewer hero shots</option>
+          <option value="balanced" selected>Balanced - steady golf</option>
+          <option value="aggressive">Aggressive - more birdies, more bogeys</option>
+          <option value="glory">Go for glory - chaos mode</option>
+        </select>
+
+        <button id="playRound">Play 9 holes</button>
+        <button id="idleButton" class="secondary">Collect idle practice</button>
+        <button id="resetButton" class="danger">Reset save</button>
+      </div>
+
+      <div class="panel clubhouse">
+        <h2>Clubhouse upgrades</h2>
+        <p>Upgrade your clubhouse to improve all Birdies slightly.</p>
+        <button id="upgradeClubhouse">Upgrade clubhouse</button>
+        <p class="small">Next upgrade cost: <strong id="clubhouseCost">100</strong> coins</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Last round</h2>
+      <div id="roundSummary" class="round-summary">Pick a Birdie and play a round.</div>
+      <ol id="holeLog" class="hole-log"></ol>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
